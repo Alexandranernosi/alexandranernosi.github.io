@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Der Führungsspiegel | Alexandra Nernosi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --orange:   #f39200;
+            --sand:     #D4C5A9;
+            --cream:    #FAF7F2;
+            --warm:     #F0EAE0;
+            --dark:     #1A1A1A;
+            --white:    #FFFFFF;
+            --muted:    #7A7060;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            line-height: 1.75;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+        .section    { padding: 88px 0; }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--warm);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .topbar-brand span { color: var(--orange); }
+
+        .topbar a.btn-sm {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--orange);
+            padding: 10px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .topbar a.btn-sm:hover { background: #d47f00; }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--cream);
+            min-height: 92vh;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            align-items: center;
+            gap: 0;
+            overflow: hidden;
+        }
+
+        .hero-text { padding: 80px 48px 80px 0; }
+
+        .hero-label {
+            font-size: clamp(22px, 2.8vw, 32px);
+            letter-spacing: 0.3px;
+            color: var(--orange);
+            margin-bottom: 24px;
+            font-weight: 600;
+            padding-left: 18px;
+            border-left: 4px solid var(--orange);
+            line-height: 1.35;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5.5vw, 62px);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dark);
+            line-height: 1.08;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--orange);
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 1.5vw, 19px);
+            color: var(--dark);
+            font-weight: 400;
+            margin-bottom: 44px;
+            max-width: 480px;
+            line-height: 1.85;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 36px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item { display: flex; flex-direction: column; }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 600;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px;
+            max-width: 140px;
+            line-height: 1.4;
+        }
+
+        .hero-image {
+            height: 92vh;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%), linear-gradient(to top, transparent 0%, black 12%);
+            -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(to right, transparent 0%, black 18%), linear-gradient(to top, transparent 0%, black 12%);
+            mask-composite: intersect;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 17px 40px;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover { background: #d47f00; transform: translateY(-2px); }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--orange);
+            color: var(--orange);
+        }
+
+        .btn-outline:hover { background: var(--orange); color: var(--white); }
+
+        .btn-dark {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .btn-dark:hover { background: #333; }
+
+        /* ── LABELS / TITLES ── */
+        .section-label {
+            display: block;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dark);
+            margin-bottom: 48px;
+            line-height: 1.2;
+        }
+
+        /* ── GALLUP ── */
+        .gallup { background: var(--white); }
+
+        .gallup-top {
+            max-width: 680px;
+            margin-bottom: 56px;
+        }
+
+        .gallup-headline {
+            font-size: clamp(20px, 2.5vw, 26px);
+            font-weight: 600;
+            color: var(--dark);
+            letter-spacing: 0;
+            text-transform: none;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .gallup-quote {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .gallup-questions {
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid var(--warm);
+        }
+
+        .gallup-sub-question {
+            font-size: clamp(17px, 1.8vw, 20px);
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        .gallup-finale {
+            margin-top: 48px;
+            text-align: center;
+            padding: 56px 0 0;
+        }
+
+        .gallup-bridge {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--dark);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .gallup-closing-question {
+            font-size: clamp(22px, 2.8vw, 30px);
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 36px;
+            line-height: 1.2;
+        }
+
+        .gallup-source {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .gallup-image {
+            border-radius: 2px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .gallup-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+
+        .gallup-bars { display: flex; flex-direction: column; gap: 28px; }
+
+        .bar-item {
+            display: grid;
+            grid-template-columns: 68px 1fr 280px;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .bar-pct {
+            font-size: 34px;
+            font-weight: 600;
+            color: var(--orange);
+            text-align: right;
+        }
+
+        .bar-track {
+            height: 5px;
+            background: var(--warm);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--orange);
+            width: 0;
+            transition: width 1.4s ease;
+            border-radius: 3px;
+        }
+
+        .bar-label { font-size: 14px; color: var(--dark); line-height: 1.45; }
+
+        .gallup-insight {
+            margin-top: 48px;
+            padding: 32px 36px;
+            background: var(--cream);
+            border-left: 3px solid var(--orange);
+        }
+
+        .gallup-insight p { font-size: 17px; line-height: 1.9; }
+
+        /* ── FOR WHOM ── */
+        .for-whom { background: var(--warm); }
+
+        .for-whom-list { display: flex; flex-direction: column; gap: 14px; }
+
+        .for-whom-item {
+            display: flex;
+            gap: 20px;
+            padding: 24px 28px;
+            background: var(--white);
+            border-left: 3px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .for-whom-item:hover { border-left-color: var(--orange); }
+
+        .for-whom-dot {
+            width: 7px; height: 7px;
+            background: var(--orange);
+            border-radius: 50%;
+            margin-top: 10px;
+            flex-shrink: 0;
+        }
+
+        .for-whom-item p { font-size: 18px; line-height: 1.85; }
+
+        /* ── HOW I WORK ── */
+        .how-section {
+            background: var(--cream);
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: 1fr 460px;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .how-image {
+            overflow: hidden;
+            height: 720px;
+            order: 2;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%), linear-gradient(to top, transparent 0%, black 10%);
+            -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(to right, transparent 0%, black 18%), linear-gradient(to top, transparent 0%, black 10%);
+            mask-composite: intersect;
+        }
+
+        .how-text {
+            order: 1;
+        }
+
+        .how-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 10%;
+        }
+
+        .how-text p {
+            font-size: 18px;
+            line-height: 1.95;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .how-text strong { color: var(--orange); font-weight: 500; }
+
+        /* ── TEST SECTION ── */
+        .test-section {
+            background: var(--white);
+            padding: 88px 0;
+        }
+
+        .test-intro { text-align: center; margin-bottom: 64px; }
+
+        .test-intro p {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Progress */
+        .progress-container { margin-bottom: 48px; }
+
+        .progress-track {
+            height: 3px;
+            background: var(--warm);
+            margin-bottom: 12px;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .progress-fill {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            background: var(--orange);
+            width: 0%;
+            transition: width 0.7s ease;
+            border-radius: 2px;
+        }
+
+        .progress-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-align: right;
+        }
+
+        /* Question */
+        .question-wrap { transition: opacity 0.5s ease, transform 0.5s ease; }
+
+        .question-number {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 18px;
+        }
+
+        .question-text {
+            font-size: clamp(17px, 2.2vw, 21px);
+            font-weight: 300;
+            color: var(--dark);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--warm);
+        }
+
+        .answer-area {
+            width: 100%;
+            background: var(--cream);
+            border: 1px solid var(--sand);
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            line-height: 1.75;
+            padding: 22px 24px;
+            resize: vertical;
+            min-height: 140px;
+            transition: border-color 0.3s;
+            margin-bottom: 24px;
+        }
+
+        .answer-area:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .answer-area::placeholder { color: var(--sand); }
+
+        /* Reflection */
+        .reflection {
+            display: none;
+            padding: 28px 32px;
+            background: var(--cream);
+            border-left: 3px solid var(--orange);
+            margin-bottom: 32px;
+        }
+
+        .reflection.visible {
+            display: block;
+            animation: fadeSlide 0.7s ease forwards;
+        }
+
+        .reflection-label {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 12px;
+        }
+
+        .reflection-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        /* Test wrapper box */
+        .test-box {
+            background: var(--cream);
+            padding: 52px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        /* ── RESULTS ── */
+        .results-section {
+            display: none;
+            background: var(--cream);
+            padding: 88px 0;
+        }
+
+        .results-section.visible { display: block; }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .results-header p.lead {
+            font-size: 16px;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .pattern-card {
+            padding: 36px;
+            margin-bottom: 16px;
+            background: var(--white);
+            border-left: 3px solid var(--orange);
+            transition: transform 0.2s;
+        }
+
+        .pattern-card:hover { transform: translateX(4px); }
+
+        .pattern-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 12px;
+        }
+
+        .pattern-text { font-size: 15px; line-height: 1.9; }
+
+        .results-cta {
+            background: var(--dark);
+            padding: 64px 48px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .results-cta h3 {
+            font-size: clamp(18px, 2.5vw, 26px);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 18px;
+        }
+
+        .results-cta p {
+            color: var(--sand);
+            font-size: 15px;
+            margin-bottom: 36px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.85;
+        }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { background: var(--white); }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            padding: 40px;
+        }
+
+        .testimonial-mark {
+            font-family: 'Caveat', cursive;
+            font-size: 80px;
+            color: var(--orange);
+            line-height: 0.6;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            line-height: 1.9;
+            color: var(--dark);
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        .testimonial-author { font-size: 13px; font-weight: 600; }
+        .testimonial-role   { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+        /* ── ABOUT ── */
+        .about { background: var(--warm); }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .about-image-col {
+            order: 1;
+        }
+
+        .about-image {
+            overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to left, transparent 0%, black 18%), linear-gradient(to top, transparent 0%, black 10%);
+            -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(to left, transparent 0%, black 18%), linear-gradient(to top, transparent 0%, black 10%);
+            mask-composite: intersect;
+        }
+
+        .about-text {
+            order: 2;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 820px;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 24px;
+        }
+
+        .about-stat-number {
+            font-size: 42px;
+            font-weight: 600;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .about-stat-label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.95;
+            color: var(--dark);
+            margin-bottom: 18px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 28px;
+        }
+
+        .tag {
+            padding: 7px 14px;
+            border: 1px solid var(--sand);
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: var(--white);
+        }
+
+        /* ── FOOTER CTA ── */
+        .footer-cta {
+            background: var(--orange);
+            padding: 88px 0;
+            text-align: center;
+        }
+
+        .footer-cta h2 {
+            font-size: clamp(24px, 4vw, 38px);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 18px;
+        }
+
+        .footer-cta p {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            margin-bottom: 40px;
+            max-width: 460px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-white { background: var(--white); color: var(--orange); }
+        .btn-white:hover { background: var(--dark); color: var(--white); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--dark);
+            padding: 36px 0;
+            text-align: center;
+        }
+
+        footer p { font-size: 12px; color: var(--muted); letter-spacing: 1px; line-height: 2.2; }
+        footer a  { color: var(--orange); text-decoration: none; }
+
+        /* ── IMPRESSUM OVERLAY ── */
+        .impressum-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(26,26,26,0.7);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .impressum-overlay.open {
+            display: flex;
+        }
+
+        .impressum-box {
+            background: var(--white);
+            max-width: 560px;
+            width: 100%;
+            padding: 48px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .impressum-box h3 {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 24px;
+        }
+
+        .impressum-box p {
+            font-size: 14px;
+            line-height: 2;
+            color: var(--dark);
+        }
+
+        .impressum-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--muted);
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .impressum-close:hover { color: var(--dark); }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero             { grid-template-columns: 1fr; min-height: auto; }
+            .hero-image       { height: 55vw; }
+            .hero-text        { padding: 60px 0 40px; }
+            .how-grid         { grid-template-columns: 1fr; }
+            .how-image        { height: 340px; order: 0; }
+            .how-text         { order: 0; }
+            .about-content    { grid-template-columns: 1fr; }
+            .about-image-col  { order: 0; }
+            .about-text       { order: 0; }
+            .about-image img  { height: 320px; }
+            .test-box         { padding: 32px 24px; }
+        }
+
+        @media (max-width: 640px) {
+            .bar-item { grid-template-columns: 56px 1fr; grid-template-rows: auto auto; }
+            .bar-label { grid-column: 1 / -1; }
+            .stat-row  { gap: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ TOPBAR -->
+<nav class="topbar">
+    <div class="container">
+        <div class="topbar-inner">
+            <img src="https://www.alexandranernosi.de/wp-content/uploads/2023/12/alexandra-nernosi-logo-variante3.svg" alt="Alexandra Nernosi" style="height: 56px; width: auto;">
+            <a href="https://calendly.com/d/cx24-d43-858" class="btn-sm" target="_blank" rel="noopener">Gespräch buchen</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════ HERO -->
+<section class="hero">
+    <div class="hero-text container" style="padding-right: 48px;">
+        <p class="hero-label">Für Inhaber:innen, die ihr Unternehmen wirklich voranbringen wollen.</p>
+        <h1>Der Führungs<em>spiegel</em></h1>
+        <p class="hero-sub">Sie haben in Entwicklung investiert, in Seminare, in Methoden. Und spüren trotzdem, dass Ihre Teams und Führungskräfte nicht da sind, wo sie sein könnten. Woran liegt das wirklich? Dieser Test zeigt es Ihnen.</p>
+
+        <div class="stat-row">
+            <div class="stat-item">
+                <span class="stat-number">77%</span>
+                <span class="stat-label">machen nur das Nötigste</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">13%</span>
+                <span class="stat-label">haben innerlich bereits gekündigt</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10%</span>
+                <span class="stat-label">sind wirklich mit Herz dabei</span>
+            </div>
+        </div>
+
+        <a href="#test" class="btn">Ich möchte es wissen →</a>
+    </div>
+    <div class="hero-image">
+        <img src="img/_O1A1243.jpg" alt="Alexandra Nernosi">
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ GALLUP -->
+<section class="gallup section">
+    <div class="container">
+        <div class="gallup-top fade-in">
+            <span class="section-label">Der Gallup Engagement Index 2025</span>
+            <h3 class="gallup-headline">Was die Gallup-Studie 2025 über Deutschlands Führung sagt.</h3>
+            <p class="gallup-quote">1.700 Arbeitnehmer:innen wurden befragt. Das Ergebnis stellt eine Frage, die sich jede Inhaber:in stellen sollte.</p>
+        </div>
+
+        <div class="gallup-bars">
+            <div class="bar-item fade-in">
+                <span class="bar-pct">10%</span>
+                <div class="bar-track"><div class="bar-fill" data-width="10"></div></div>
+                <span class="bar-label">Emotional hoch gebunden: geben ihr Bestes, denken mit, tragen Verantwortung.</span>
+            </div>
+            <div class="bar-item fade-in">
+                <span class="bar-pct">77%</span>
+                <div class="bar-track"><div class="bar-fill" data-width="77"></div></div>
+                <span class="bar-label">Zuverlässig, aber ohne Eigeninitiative und ohne inneren Antrieb.</span>
+            </div>
+            <div class="bar-item fade-in">
+                <span class="bar-pct">13%</span>
+                <div class="bar-track"><div class="bar-fill" data-width="13"></div></div>
+                <span class="bar-label">Haben innerlich bereits gekündigt. Schaden: 142 Mrd. € jährlich.</span>
+            </div>
+        </div>
+
+        <div class="gallup-questions fade-in">
+            <p class="gallup-sub-question">Wieviele meiner Mitarbeiter:innen sind in welcher Gruppe?</p>
+        </div>
+
+        <div class="gallup-insight fade-in">
+            <p>Was Gallup klar benennt: <strong>Emotionale Bindung ist keine Frage von Methoden, Tools oder Seminaren. Sie ist eine Frage von Führung.</strong> Von dem, was eine Führungspersönlichkeit wirklich ausstrahlt. Jeden Tag. In jedem Gespräch. In jeder Entscheidung.</p>
+            <p style="margin-top: 16px;">Und genau da liegt der Punkt, den die meisten übersehen: Ein Nervensystem unter Dauerdruck kann keine echte Verbindung herstellen. Es reagiert. Es funktioniert. Aber es führt nicht mehr wirklich. Und das überträgt sich auf jede Führungskraft im Unternehmen und auf jedes Team. Auch auf Ihres.</p>
+        </div>
+
+        <div class="gallup-finale fade-in">
+            <p class="gallup-bridge">Das ist die Frage, die sich jede Führungspersönlichkeit stellen sollte.</p>
+            <p class="gallup-closing-question">Wie steht es gerade um meine Führung?</p>
+            <a href="#test" class="btn">Ich möchte es wissen →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ FOR WHOM -->
+<section class="for-whom section">
+    <div class="container">
+        <span class="section-label">Kommt Ihnen das bekannt vor?</span>
+        <h2 class="section-title">Sie sind nicht allein damit.</h2>
+
+        <div class="for-whom-list">
+            <div class="for-whom-item fade-in">
+                <div class="for-whom-dot"></div>
+                <p>Sie haben ein Team. Und trotzdem landen die wichtigen Entscheidungen am Ende immer wieder bei Ihnen. Weil Sie wissen, dass es sonst einfach nicht so wird, wie es sein soll.</p>
+            </div>
+            <div class="for-whom-item fade-in">
+                <div class="for-whom-dot"></div>
+                <p>Sie haben investiert. In Methodentrainings, in Führungsseminare, in Entwicklung. Und schauen trotzdem abends manchmal auf ihr Unternehmen und fragen sich, warum das alles noch so wenig zieht.</p>
+            </div>
+            <div class="for-whom-item fade-in">
+                <div class="for-whom-dot"></div>
+                <p>Sie haben vieles versucht. Neue Strukturen, mehr Feedback, klarere Ansagen. Für einen Moment bewegt sich etwas. Und dann sind alle wieder da, wo sie vorher waren.</p>
+            </div>
+            <div class="for-whom-item fade-in">
+                <div class="for-whom-dot"></div>
+                <p>Und manchmal, in einem ruhigen Moment, fragen Sie sich: Wofür mache ich das eigentlich alles? Und wann zieht hier endlich jemand wirklich mit?</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 48px;">
+            <a href="#test" class="btn">Test starten →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ HOW I WORK -->
+<section class="how-section section">
+    <div class="container">
+        <div class="how-grid">
+            <div class="how-image fade-in">
+                <img src="img/_O1A0970.jpg" alt="Alexandra Nernosi">
+            </div>
+            <div class="how-text fade-in">
+                <span class="section-label">Mein Ansatz</span>
+                <h2 class="section-title">Führung beginnt innen.</h2>
+                <p>Die meisten Führungsansätze setzen beim Verhalten an. Bei Kommunikation, bei Methoden, bei Tools. Und verändern deshalb so wenig. Denn echte Führung sitzt tiefer.</p>
+                <p>Sie sitzt im Kopf, in den Mustern und Glaubenssätzen, die Ihre Entscheidungen lenken, lange bevor Sie es bewusst bemerken. Sie sitzt im Herzen, in der Art, wie Sie wirklich mit Menschen in Verbindung gehen. Und sie sitzt im Körper, in dem, was Ihr Nervensystem täglich trägt, reguliert und aussendet.</p>
+                <p><strong>Kopf. Herz. Körper.</strong> Das ist der Ansatz, mit dem ich arbeite. Körper- und nervensystembasierte Führungsentwicklung bedeutet: Ich schaue dorthin, wo keine Methode der Welt hinkommt. Dorthin, wo Ihr Körper längst weiß, was Ihr Kopf noch nicht ausgesprochen hat. Und genau dort beginnt echte Veränderung.</p>
+                <p style="margin-top: 28px;">
+                    <a href="#test" class="btn">Test starten →</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ TEST -->
+<section class="test-section" id="test">
+    <div class="container">
+
+        <div class="test-intro fade-in">
+            <span class="section-label" style="text-align: center; display: block;">Der Führungsspiegel</span>
+            <h2 class="section-title" style="text-align: center; margin-bottom: 16px;">7 Fragen. Eine Wahrheit.</h2>
+            <p>Es gibt keine richtigen oder falschen Antworten, nur ehrliche. Was Sie gleich lesen, wird Sie vielleicht überraschen. Nehmen Sie sich 10 Minuten und einen Moment der Stille. Und seien Sie bereit, sich selbst wirklich zu begegnen.</p>
+        </div>
+
+        <!-- START -->
+        <div class="test-box" id="test-start">
+            <p style="font-size: 15px; color: var(--muted); margin-bottom: 20px; line-height: 1.85;">Nach jeder Antwort erhalten Sie eine direkte Spiegelung. Am Ende eine verdichtete Auswertung und eine Einladung zum Gespräch, wenn Sie möchten.</p>
+            <p style="font-size: 15px; color: var(--dark); font-weight: 500; margin-bottom: 32px; line-height: 1.85; padding: 16px 20px; background: var(--warm); border-left: 3px solid var(--orange);">Am Ende erhalten Sie einen fertigen Prompt mit Ihren Antworten, den Sie in eine KI Ihrer Wahl einfügen können, für eine ehrliche, persönliche Spiegelung Ihrer Führungssituation.</p>
+            <button class="btn" onclick="startTest()">Ich bin bereit →</button>
+        </div>
+
+        <!-- TEST UI -->
+        <div class="test-box" id="test-main" style="display: none;">
+
+            <div class="progress-container">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p class="progress-label" id="progress-label">Frage 1 von 7</p>
+            </div>
+
+            <div class="question-wrap" id="question-wrap">
+                <p class="question-number" id="q-number"></p>
+                <p class="question-text" id="q-text"></p>
+
+                <textarea
+                    class="answer-area"
+                    id="answer-area"
+                    placeholder="Schreiben Sie hier, ohne zu filtern. Diese Antwort ist nur für Sie."
+                    oninput="this.style.borderColor=''; document.getElementById('answer-hint').style.display='none';"
+                ></textarea>
+                <p id="answer-hint" style="display:none; color:var(--orange); font-size:14px; margin-top:8px; margin-bottom:0;"></p>
+
+                <div class="reflection" id="reflection-box">
+                    <p class="reflection-label">Was das zeigt</p>
+                    <p class="reflection-text" id="reflection-text"></p>
+                </div>
+
+                <button class="btn" id="action-btn"></button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ RESULTS -->
+<section class="results-section" id="results-section">
+    <div class="container">
+
+        <div class="results-header fade-in">
+            <span class="section-label" style="text-align:center; display:block;">Ihre Auswertung</span>
+            <h2 class="section-title" style="text-align:center;">Was Ihre Antworten zeigen</h2>
+            <p class="lead">Führung wirkt von innen nach außen. Was Sie gerade gespürt haben, ist kein Zufall, kein Einzelfall.</p>
+        </div>
+
+        <div id="pattern-cards" style="max-width: 760px; margin: 0 auto;"></div>
+
+        <!-- KI-SPIEGELUNG -->
+        <div class="ai-prompt-block fade-in" style="max-width: 760px; margin: 56px auto 0;">
+            <span class="section-label" style="display:block;">Ihre persönliche KI-Spiegelung</span>
+            <h3 style="font-size: 1.25rem; font-weight: 400; margin-bottom: 12px;">Jetzt tiefer gehen, mit KI.</h3>
+            <p style="font-size: 16px; color: var(--muted); margin-bottom: 24px; line-height: 1.8;">Ihre Antworten wurden in einen fertigen Prompt zusammengefasst. Kopieren Sie ihn und fügen Sie ihn in ChatGPT, Claude oder eine andere KI Ihrer Wahl ein. Die KI liest Ihre Antworten und gibt Ihnen eine ehrliche, persönliche Spiegelung Ihrer Führungssituation.</p>
+            <textarea id="ai-prompt-text" readonly style="width:100%; height:180px; font-family:'Montserrat',sans-serif; font-size:13px; line-height:1.7; padding:20px; border:1px solid var(--sand); border-radius:8px; background:var(--cream); color:var(--dark); resize:none; outline:none;"></textarea>
+            <button id="copy-btn" class="btn" onclick="copyPrompt()" style="margin-top:16px;">Prompt kopieren →</button>
+        </div>
+
+        <div class="results-cta fade-in" style="max-width: 760px; margin: 48px auto 0;">
+            <h3>Wenn dieser Spiegel etwas in Ihnen berührt hat</h3>
+            <p>Dann lassen Sie uns sprechen. In einem ersten kostenlosen Gespräch schauen wir gemeinsam, was Ihre Antworten über Ihre Führung sagen, und was der nächste echte Schritt für Sie ist.</p>
+            <a href="https://calendly.com/d/cx24-d43-858" class="btn btn-white" target="_blank" rel="noopener">Kostenloses Gespräch buchen</a>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ ABOUT -->
+<section class="about section">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-image-col fade-in">
+                <div class="about-image">
+                    <img src="img/_O1A1348.jpg" alt="Alexandra Nernosi">
+                </div>
+                <div class="about-stats">
+                    <div>
+                        <div class="about-stat-number">700+</div>
+                        <div class="about-stat-label">Führungskräfte begleitet</div>
+                    </div>
+                    <div>
+                        <div class="about-stat-number">15+</div>
+                        <div class="about-stat-label">Jahre Erfahrung</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-text fade-in">
+                <span class="section-label">Alexandra Nernosi</span>
+                <h2 class="section-title">Ich sehe Sie.<br>Ich sehe das Ganze.</h2>
+                <p>Als Business Coach, Executive Coach und Heilpraktikerin für Psychotherapie bringe ich zusammen, was echte Führungsarbeit braucht: 15 Jahre Erfahrung in der Führungskräfteentwicklung und die psychologische Tiefe, die weit unter die Oberfläche geht.</p>
+                <p>Ich spüre den Druck, der sich in Ihnen festsetzt. Die Momente, wo Sie nach außen stark wirken und innerlich schon längst am Limit sind. Wo Worte fallen, die Sie so eigentlich nicht gemeint haben. Wo Sie sich fragen, warum nicht alle mitziehen, obwohl Sie alles geben.</p>
+                <p>Und ich weiß eines mit großer Gewissheit: Wenn Sie beginnen, etwas in Ihrem Inneren zu verändern, verändert sich auch Ihr ganzes Unternehmen. Ihre Führungskräfte spüren es. Ihr Team spürt es. Und Sie selbst spüren wieder, wofür Sie das alles machen.</p>
+                <p>Genau dort beginnt meine Arbeit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ FOOTER CTA -->
+<section class="footer-cta">
+    <div class="container">
+        <h2>Führung beginnt innen.</h2>
+        <p>Buchen Sie Ihr kostenloses Erstgespräch und finden Sie heraus, was in Ihrer Führung wirklich möglich ist.</p>
+        <a href="https://calendly.com/d/cx24-d43-858" class="btn btn-white" target="_blank" rel="noopener">Gespräch buchen</a>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ FOOTER -->
+<footer>
+    <div class="container">
+        <p>© 2025 Alexandra Nernosi &nbsp;·&nbsp; <a href="mailto:info@alexandranernosi.de">info@alexandranernosi.de</a> &nbsp;·&nbsp; <a href="https://www.alexandranernosi.de" target="_blank" rel="noopener">www.alexandranernosi.de</a></p>
+        <p>KommUNIKATion – spürbar anders! &nbsp;·&nbsp; <a href="#" onclick="document.getElementById('impressum-overlay').classList.add('open'); return false;">Impressum</a></p>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════ IMPRESSUM OVERLAY -->
+<div class="impressum-overlay" id="impressum-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="impressum-box">
+        <button class="impressum-close" onclick="document.getElementById('impressum-overlay').classList.remove('open')">×</button>
+        <h3>Impressum</h3>
+        <p>
+            <strong>Alexandra Nernosi</strong><br>
+            KommUNIKATion – spürbar anders!<br>
+            Oberer Weinbergsweg 19<br>
+            97532 Üchtelhausen / OT Zell
+        </p>
+        <p style="margin-top: 16px;">
+            Telefon: 0176 556 221 88<br>
+            E-Mail: <a href="mailto:info@alexandranernosi.de">info@alexandranernosi.de</a>
+        </p>
+        <p style="margin-top: 16px;">
+            Umsatzsteuer-ID: 92 956 803 745
+        </p>
+        <p style="margin-top: 16px;">
+            <strong>Redaktionell verantwortlich:</strong><br>
+            Alexandra Nernosi, Oberer Weinbergsweg 19, 97532 Üchtelhausen / OT Zell
+        </p>
+        <p style="margin-top: 16px;">
+            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit. Wir nehmen nicht an Verbraucherschlichtungsverfahren teil.
+        </p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ JAVASCRIPT -->
+<script>
+    const questions = [
+        {
+            text: "Wann haben Sie zuletzt gespürt, dass Ihr Team wirklich mitzieht? Aus eigenem Antrieb, mit echtem Herz. Was sagt Ihnen das über das, was Sie gerade als Inhaber:in ausstrahlen?",
+            reflection: "Was Sie gerade beschreiben, ist mehr als eine Beobachtung über Ihr Team. Es ist ein Spiegel für das, was Sie selbst gerade ausstrahlen. Engagement ist keine Eigenschaft von Menschen. Es ist eine Reaktion auf Führung. Und Führung beginnt bei Ihnen."
+        },
+        {
+            text: "Welche Entscheidungen treffen Ihre Mitarbeitenden wirklich alleine? Und welche landen am Ende doch wieder bei Ihnen? Wie lange ist das schon so?",
+            reflection: "Jede Entscheidung, die bei Ihnen landet, obwohl jemand anderes sie treffen könnte, hat eine Wurzel. Die liegt tiefer als jeder Prozess. Tiefer als jedes Training. Sie liegt in dem, was Ihr Nervensystem gelernt hat zu kontrollieren, um sicher zu sein."
+        },
+        {
+            text: "Denken Sie an die Person in Ihrem Team, die Sie innerlich am meisten beschäftigt. Was haben Sie ihr gegenüber noch nicht ausgesprochen? Und was kostet Sie dieses Schweigen täglich?",
+            reflection: "Was nicht ausgesprochen wird, bleibt im Raum. Sie spüren es. Ihr Gegenüber spürt es. Und Ihr Team spürt es. Das Schweigen hat seinen Preis, jeden Tag. Und meistens zahlen Sie ihn alleine."
+        },
+        {
+            text: "Woran würden Ihre Mitarbeitenden spüren, dass Sie ihnen wirklich vertrauen? Und was davon zeigen Sie gerade tatsächlich?",
+            reflection: "Vertrauen zeigt sich nicht in Worten. Es zeigt sich in dem, was Sie zulassen. In dem, was Sie abgeben. In dem, was Sie aushalten können, ohne einzugreifen. Das ist einer der ehrlichsten Spiegel, den eine Inhaber:in haben kann."
+        },
+        {
+            text: "Was glauben Sie, sagen Ihre Mitarbeitenden über Sie, wenn Sie nicht im Raum sind? Und was wünschen Sie sich, dass sie sagen? Was ist der Unterschied?",
+            reflection: "Genau in diesem Unterschied liegt mehr, als es auf den ersten Blick scheint. Inhaber:innen, die sich diese Frage wirklich stellen und ehrlich antworten, verändern nicht nur ihre eigene Wirkung. Sie verändern die Kultur ihres ganzen Unternehmens."
+        },
+        {
+            text: "Wo tragen Sie gerade Verantwortung für Dinge, die eigentlich jemand anderes in Ihrem Unternehmen tragen sollte? Und was passiert in Ihnen, wenn Sie daran denken, das wirklich abzugeben?",
+            reflection: "Was Sie gerade beschreiben, hat einen Namen: Führungsüberlastung. Sie entsteht aus einem tief verwurzelten Muster. Ihr Nervensystem hat gelernt, dass nur dann alles gut wird, wenn Sie es selbst in der Hand halten. Das hält es lange durch. Aber es hat seinen Preis. Jeden Tag."
+        },
+        {
+            text: "Welche Wahrheit über Ihr Unternehmen oder Ihre Führung sprechen Sie nicht aus, weil sie Sie zwingen würde, etwas zu verändern, das unbequem ist?",
+            reflection: "Dass Sie diese Frage überhaupt beantwortet haben, sagt etwas Wichtiges: Sie wissen es bereits. Das Wissen war immer da. Was gefehlt hat, ist der Raum, es auszusprechen. Und jemand, der wirklich zuhört. Mit echtem Interesse. Ohne Bewertung."
+        }
+    ];
+
+    const patterns = [
+        {
+            title: "Das Muster hinter der Erschöpfung",
+            text: "Ihre Antworten zeigen, was viele Inhaber und Führungskräfte tragen, ohne es zu benennen: die Kombination aus hohem Anspruch an sich selbst, dem Gefühl, alleine zu tragen, und dem gleichzeitigen Spüren, dass das so nicht mehr weitergeht. Das ist kein Versagen. Das ist das Signal eines Nervensystems, das seit Langem auf Hochtouren läuft."
+        },
+        {
+            title: "Was Führung wirklich kostet",
+            text: "Führung, die von innen unter Druck stattfindet, überträgt sich, nicht durch Worte, sondern durch Ausstrahlung, durch Entscheidungsmuster, durch das, was unausgesprochen bleibt. Ihr Team spürt, was Sie tragen. Es reagiert darauf, ob es Ihnen bewusst ist oder nicht."
+        },
+        {
+            title: "Der echte Hebel",
+            text: "Die meisten Veränderungen beginnen nicht mit einem neuen Prozess oder einer neuen Strategie. Sie beginnen damit, dass jemand anfängt, ehrlich hinzuschauen, auf sich selbst, auf das, was er aussendet, auf das, was er noch nicht ausgesprochen hat. Genau das haben Sie gerade getan."
+        }
+    ];
+
+    let currentQuestion = 0;
+    let answers = [];
+
+    function startTest() {
+        document.getElementById('test-start').style.display = 'none';
+        document.getElementById('test-main').style.display = 'block';
+        renderQuestion(0);
+    }
+
+    function renderQuestion(index) {
+        const q = questions[index];
+
+        document.getElementById('q-number').textContent = `Frage 0${index + 1}`;
+        document.getElementById('q-text').textContent = q.text;
+        document.getElementById('answer-area').value = '';
+        document.getElementById('answer-area').style.borderColor = '';
+        document.getElementById('answer-hint').style.display = 'none';
+
+        const refBox = document.getElementById('reflection-box');
+        refBox.classList.remove('visible');
+        refBox.style.display = 'none';
+
+        const btn = document.getElementById('action-btn');
+        btn.textContent = 'Spiegelung anzeigen →';
+        btn.onclick = revealReflection;
+
+        const pct = (index / questions.length) * 100;
+        document.getElementById('progress-fill').style.width = pct + '%';
+        document.getElementById('progress-label').textContent = `Frage ${index + 1} von ${questions.length}`;
+
+        const wrap = document.getElementById('question-wrap');
+        wrap.style.opacity = '0';
+        wrap.style.transform = 'translateY(14px)';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            wrap.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            wrap.style.opacity = '1';
+            wrap.style.transform = 'translateY(0)';
+        }));
+    }
+
+    function revealReflection() {
+        const answer = document.getElementById('answer-area').value.trim();
+        const hint = document.getElementById('answer-hint');
+        const words = answer.split(/\s+/).filter(w => w.length > 1);
+        if (answer.length === 0) {
+            hint.textContent = 'Bitte schreiben Sie zuerst Ihre Antwort.';
+            hint.style.display = 'block';
+            document.getElementById('answer-area').style.borderColor = 'var(--orange)';
+            document.getElementById('answer-area').focus();
+            return;
+        }
+        if (words.length < 3) {
+            hint.textContent = 'Nehmen Sie sich einen Moment mehr. Schreiben Sie einen vollständigen Gedanken.';
+            hint.style.display = 'block';
+            document.getElementById('answer-area').style.borderColor = 'var(--orange)';
+            document.getElementById('answer-area').focus();
+            return;
+        }
+        hint.style.display = 'none';
+        answers[currentQuestion] = answer;
+
+        const refBox = document.getElementById('reflection-box');
+        document.getElementById('reflection-text').textContent = questions[currentQuestion].reflection;
+        refBox.style.display = 'block';
+        requestAnimationFrame(() => refBox.classList.add('visible'));
+
+        const btn = document.getElementById('action-btn');
+        if (currentQuestion < questions.length - 1) {
+            btn.textContent = 'Nächste Frage →';
+            btn.onclick = advanceQuestion;
+        } else {
+            btn.textContent = 'Meine Auswertung anzeigen →';
+            btn.onclick = showResults;
+        }
+
+        setTimeout(() => refBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 200);
+    }
+
+    function advanceQuestion() {
+        currentQuestion++;
+        renderQuestion(currentQuestion);
+        document.getElementById('test').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showResults() {
+        // Test-Bereich vollständig ausblenden
+        document.getElementById('test-main').style.display = 'none';
+        document.getElementById('test-start').style.display = 'none';
+        document.querySelector('.test-section').style.display = 'none';
+
+        const container = document.getElementById('pattern-cards');
+        container.innerHTML = '';
+        patterns.forEach((p, i) => {
+            const card = document.createElement('div');
+            card.className = 'pattern-card fade-in';
+            card.style.transitionDelay = `${i * 0.15}s`;
+            card.innerHTML = `<p class="pattern-title">${p.title}</p><p class="pattern-text">${p.text}</p>`;
+            container.appendChild(card);
+        });
+
+        // Prompt zusammenbauen
+        let promptLines = `Du bist ein erfahrener Executive Coach mit Schwerpunkt körper- und nervensystembasierter Führungsentwicklung.\n\nIch habe gerade den Führungsspiegel absolviert und meine ehrlichen Antworten auf 7 Fragen gegeben. Bitte lies meine Antworten sorgfältig und gib mir eine tiefe, direkte Spiegelung meiner Führungssituation.\n\nIch möchte von dir:\n- Erkenne Muster, die du in meinen Antworten siehst\n- Sprich aus, was zwischen den Zeilen steht\n- Sei direkt und ehrlich, keine Beschönigung\n- Zeige, was das mit meiner inneren Haltung und meinem Nervensystem zu tun haben könnte\n- Gib mir einen konkreten ersten Schritt\n\nHier sind meine Antworten:\n\n`;
+        questions.forEach((q, i) => {
+            promptLines += `Frage ${i + 1}: ${q.text}\nMeine Antwort: ${answers[i] || '(keine Antwort)'}\n\n`;
+        });
+        promptLines += `Bitte antworte auf Deutsch. Direkt, ehrlich und ohne Floskeln.`;
+        document.getElementById('ai-prompt-text').value = promptLines;
+
+        const resultsSection = document.getElementById('results-section');
+        resultsSection.classList.add('visible');
+        setTimeout(() => {
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            initFadeIn();
+        }, 100);
+    }
+
+    function copyPrompt() {
+        const ta = document.getElementById('ai-prompt-text');
+        ta.select();
+        ta.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(ta.value).then(() => {
+            const btn = document.getElementById('copy-btn');
+            btn.textContent = 'Kopiert ✓';
+            btn.style.background = '#4a7c59';
+            setTimeout(() => {
+                btn.textContent = 'Prompt kopieren →';
+                btn.style.background = '';
+            }, 2500);
+        });
+    }
+
+    function initFadeIn() {
+        const elements = document.querySelectorAll('.fade-in:not(.visible)');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        elements.forEach(el => observer.observe(el));
+    }
+
+    function initBars() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.width + '%';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+        document.querySelectorAll('.bar-fill').forEach(bar => observer.observe(bar));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initFadeIn();
+        initBars();
+    });
+</script>
+</body>
+</html>
