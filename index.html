@@ -844,6 +844,16 @@
             .bar-label { grid-column: 1 / -1; }
             .stat-row  { gap: 28px; }
         }
+
+        @media (max-width: 480px) {
+            body { overflow-x: hidden; }
+            .hero-text { padding-right: 0 !important; }
+            .hero h1 { font-size: 26px; letter-spacing: 1px; }
+            .hero-label { font-size: 16px; }
+            .hero-image { height: 70vw; }
+            .topbar-inner { gap: 12px; }
+            .topbar-inner img { height: 40px; }
+        }
     </style>
 </head>
 <body>
