@@ -1019,8 +1019,8 @@
                 <input type="hidden" name="or" value="528f8d87-d6ba-40e9-93c5-b8fc46ccacbf">
 
                 <div style="margin-bottom: 14px;">
-                    <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; font-weight:500;">Vorname</label>
-                    <input type="text" name="fullname" placeholder="Ihr Vorname" required style="width:100%; background:var(--white); border:1px solid var(--sand); color:var(--dark); font-family:'Montserrat',sans-serif; font-size:15px; padding:14px 18px; outline:none; transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--sand)'">
+                    <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; font-weight:500;">Vorname und Nachname</label>
+                    <input type="text" name="fullname" placeholder="Ihr Vor- und Nachname" required style="width:100%; background:var(--white); border:1px solid var(--sand); color:var(--dark); font-family:'Montserrat',sans-serif; font-size:15px; padding:14px 18px; outline:none; transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--sand)'">
                 </div>
 
                 <div style="margin-bottom: 20px;">
@@ -1028,14 +1028,19 @@
                     <input type="email" name="email" placeholder="Ihre E-Mail-Adresse" required style="width:100%; background:var(--white); border:1px solid var(--sand); color:var(--dark); font-family:'Montserrat',sans-serif; font-size:15px; padding:14px 18px; outline:none; transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--sand)'">
                 </div>
 
+                <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:16px;">
+                    <input type="checkbox" id="consent-fuehrungsspiegel" name="consent_fuehrungsspiegel" required style="margin-top:3px; accent-color:var(--orange); width:16px; height:16px; flex-shrink:0;">
+                    <label for="consent-fuehrungsspiegel" style="font-size:13px; color:var(--muted); line-height:1.7; cursor:pointer;">Ja, ich möchte den Führungsspiegel erhalten.</label>
+                </div>
+
                 <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:24px;">
-                    <input type="checkbox" id="consent" name="consent" required style="margin-top:3px; accent-color:var(--orange); width:16px; height:16px; flex-shrink:0;">
-                    <label for="consent" style="font-size:13px; color:var(--muted); line-height:1.7; cursor:pointer;">Ja, ich möchte den Führungsspiegel sowie gelegentlich Impulse rund um moderne Führung per E-Mail erhalten.</label>
+                    <input type="checkbox" id="consent-impulse" name="consent_impulse" style="margin-top:3px; accent-color:var(--orange); width:16px; height:16px; flex-shrink:0;">
+                    <label for="consent-impulse" style="font-size:13px; color:var(--muted); line-height:1.7; cursor:pointer;">Ja, ich möchte zusätzlich gelegentlich Impulse rund um moderne Führung per E-Mail erhalten.</label>
                 </div>
 
                 <button type="submit" class="btn" style="width:100%;">Jetzt Führungsspiegel starten →</button>
 
-                <p style="font-size:11px; color:var(--muted); margin-top:16px; line-height:1.8; text-align:center;">Mit Ihrer Anmeldung erhalten Sie sofort Zugang zum Führungsspiegel. Zusätzlich sende ich Ihnen gelegentlich Impulse rund um moderne Führung. Eine Abmeldung ist selbstverständlich jederzeit möglich.</p>
+                <p style="font-size:11px; color:var(--muted); margin-top:16px; line-height:1.8; text-align:center;">Mit Ihrer Anmeldung erhalten Sie sofort Zugang zum Führungsspiegel. Eine Abmeldung ist selbstverständlich jederzeit möglich.</p>
             </form>
         </div>
 
