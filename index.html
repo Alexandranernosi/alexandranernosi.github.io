@@ -1252,23 +1252,12 @@
     ];
 
     function addListFields(form) {
-        if (document.getElementById('consent-fuehrungsspiegel').checked) {
-            ['p[6]', 'status[6]'].forEach(name => {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = name;
-                input.value = '6';
-                form.appendChild(input);
-            });
-        }
         if (document.getElementById('consent-impulse').checked) {
-            ['p[5]', 'status[5]'].forEach(name => {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = name;
-                input.value = '5';
-                form.appendChild(input);
-            });
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'tags';
+            input.value = 'Newsletter-Impuls';
+            form.appendChild(input);
         }
         return true;
     }
