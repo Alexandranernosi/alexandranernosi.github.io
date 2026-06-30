@@ -1085,11 +1085,12 @@
 
         <!-- KI-SPIEGELUNG -->
         <div class="ai-prompt-block fade-in" style="max-width: 760px; margin: 56px auto 0;">
-            <span class="section-label" style="display:block;">Ihre persönliche KI-Spiegelung</span>
-            <h3 style="font-size: 1.25rem; font-weight: 400; margin-bottom: 12px;">Jetzt tiefer gehen, mit KI.</h3>
-            <p style="font-size: 16px; color: var(--muted); margin-bottom: 24px; line-height: 1.8;">Ihre Antworten wurden in einen fertigen Prompt zusammengefasst. Kopieren Sie ihn und fügen Sie ihn in ChatGPT, Claude oder eine andere KI Ihrer Wahl ein. Die KI liest Ihre Antworten und gibt Ihnen eine ehrliche, persönliche Spiegelung Ihrer Führungssituation.</p>
+            <span class="section-label" style="display:block;">Ihr Führungsspiegel endet hier nicht.</span>
+            <p style="font-size: 16px; color: var(--dark); margin-bottom: 16px; line-height: 1.8;">Sie haben sich gerade ehrlich mit Ihrer Führung auseinandergesetzt.</p>
+            <p style="font-size: 16px; color: var(--dark); margin-bottom: 16px; line-height: 1.8;">Jetzt können Sie noch einen Schritt weitergehen.</p>
+            <p style="font-size: 16px; color: var(--dark); margin-bottom: 24px; line-height: 1.8;">Ich habe Ihre Antworten bereits in einen fertigen Prompt übertragen. Fügen Sie ihn einfach in ChatGPT oder eine andere KI Ihrer Wahl ein und lassen Sie sich Ihre Führungssituation noch einmal spiegeln – persönlich, ehrlich und auf Grundlage Ihrer eigenen Antworten.</p>
             <textarea id="ai-prompt-text" readonly style="width:100%; height:180px; font-family:'Montserrat',sans-serif; font-size:13px; line-height:1.7; padding:20px; border:1px solid var(--sand); border-radius:8px; background:var(--cream); color:var(--dark); resize:none; outline:none;"></textarea>
-            <button id="copy-btn" class="btn" onclick="copyPrompt()" style="margin-top:16px;">Prompt kopieren →</button>
+            <button id="copy-btn" class="btn" onclick="copyPrompt()" style="margin-top:16px;">Prompt kopieren &amp; KI-Spiegelung starten →</button>
             <!-- BOX 1 -->
             <div style="margin-top: 36px; padding: 36px 40px; background: var(--cream); border-left: 3px solid var(--orange);">
                 <p style="font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; font-weight: 600;">Bevor Sie gehen …</p>
@@ -1369,7 +1370,7 @@
             btn.textContent = 'Kopiert ✓';
             btn.style.background = '#4a7c59';
             setTimeout(() => {
-                btn.textContent = 'Prompt kopieren →';
+                btn.textContent = 'Prompt kopieren & KI-Spiegelung starten →';
                 btn.style.background = '';
             }, 2500);
         });
