@@ -1008,7 +1008,7 @@
             <h3 style="font-size: clamp(18px, 2vw, 22px); font-weight: 500; color: var(--dark); margin-bottom: 16px; line-height: 1.4;">Starten Sie jetzt Ihren persönlichen Führungsspiegel.</h3>
             <p style="font-size: 15px; color: var(--muted); margin-bottom: 20px; line-height: 1.85;">Tragen Sie Ihren Namen und Ihre E-Mail-Adresse ein und Sie erhalten sofort Zugang zum Führungsspiegel.</p>
             <p style="font-size: 15px; color: var(--dark); margin-bottom: 32px; line-height: 1.85;">Während des Führungsspiegels erhalten Sie erste Spiegelungen Ihrer Antworten. Am Ende erwartet Sie eine persönliche Auswertung, ein fertiger KI-Prompt mit Ihren individuellen Antworten sowie ein persönliches Geschenk, wenn Sie Ihre Erkenntnisse gemeinsam mit mir vertiefen möchten.</p>
-            <form action="https://alexandra-nernosi.activehosted.com/proc.php" method="post" style="margin-top: 8px;">
+            <form action="https://alexandra-nernosi.activehosted.com/proc.php" method="post" style="margin-top: 8px;" onsubmit="return addListFields(this);">
                 <input type="hidden" name="u" value="6A42C81150E23">
                 <input type="hidden" name="f" value="1">
                 <input type="hidden" name="s" value="">
@@ -1250,6 +1250,28 @@
             text: "Die meisten Veränderungen beginnen nicht mit einem neuen Prozess oder einer neuen Strategie. Sie beginnen damit, dass jemand anfängt, ehrlich hinzuschauen, auf sich selbst, auf das, was er aussendet, auf das, was er noch nicht ausgesprochen hat. Genau das haben Sie gerade getan."
         }
     ];
+
+    function addListFields(form) {
+        if (document.getElementById('consent-fuehrungsspiegel').checked) {
+            ['p[6]', 'status[6]'].forEach(name => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = '6';
+                form.appendChild(input);
+            });
+        }
+        if (document.getElementById('consent-impulse').checked) {
+            ['p[5]', 'status[5]'].forEach(name => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = '5';
+                form.appendChild(input);
+            });
+        }
+        return true;
+    }
 
     let currentQuestion = 0;
     let answers = [];
